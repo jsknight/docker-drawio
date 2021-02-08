@@ -6,7 +6,7 @@ RUN apk update --no-cache && \
         git
 
 RUN cd /tmp && \
-    git clone https://github.com/jgraph/drawio.git && \
+    git clone https://github.com/jsknight/drawio.git && \
     cd /tmp/drawio/etc/build/ && \
     ant war
 
