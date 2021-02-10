@@ -1,15 +1,3 @@
-FROM openjdk:8-alpine AS build
-
-RUN apk update --no-cache && \
-    apk add --no-cache \
-        apache-ant \
-        git
-
-RUN cd /tmp && \
-    git clone https://github.com/jsknight/drawio.git && \
-    cd /tmp/drawio/etc/build/ && \
-    ant war
-
 FROM tomcat:9-jre8-alpine
 
 LABEL maintainer="JGraph Ltd"
@@ -20,7 +8,7 @@ RUN apk update --no-cache && \
         curl \
         xmlstarlet
 
-COPY --from=build /tmp/drawio/build/draw.war /tmp
+COPY dist/draw.war /tmp
 
 # Extract draw.io war & Update server.xml to set Draw.io webapp to root
 RUN mkdir -p $CATALINA_HOME/webapps/draw && \
@@ -40,7 +28,7 @@ RUN mkdir -p $CATALINA_HOME/webapps/draw && \
         conf/server.xml
 
 # Copy docker-entrypoint
-COPY docker-entrypoint.sh /
+COPY alpine/docker-entrypoint.sh /
 RUN chmod +x /docker-entrypoint.sh
 
 WORKDIR $CATALINA_HOME

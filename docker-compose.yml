@@ -2,7 +2,7 @@
 version: '3.5'
 services:
   drawio:
-    image: jgraph/drawio
+    image: jknight-drawio:latest
     container_name: drawio
     restart: unless-stopped
     ports:
