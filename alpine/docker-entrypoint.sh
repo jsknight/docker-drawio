@@ -49,6 +49,9 @@ else
 fi
 
 #Disable unsupported services
+echo "urlParams['grid'] = '0'; //Grid" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
+echo "urlParams['browser'] = '0'; //local Storage" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
+echo "urlParams['ui'] = 'min'; //UI" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
 echo "urlParams['db'] = '0'; //dropbox" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
 echo "urlParams['gh'] = '0'; //github" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
 echo "urlParams['tr'] = '0'; //trello" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js

@@ -9,5 +9,5 @@ window.EXPORT_URL         = '/export'; //This points to ExportProxyServlet which
 							              //This proxy configuration allows https requests to the export server via Tomcat.
 window.PLANT_URL          = 'REPLACE_WITH_YOUR_PLANTUML_SERVER';
 window.DRAW_MATH_URL      = window.SERVER_URL_PREFIX + '/math';
-window.DRAWIO_CONFIG      = null; //Replace with your custom draw.io configurations. For more details, https://desk.draw.io/support/solutions/articles/16000058316
+window.DRAWIO_CONFIG      = "jon"; //Replace with your custom draw.io configurations. For more details, https://desk.draw.io/support/solutions/articles/16000058316
 window.EDITOR_UI_DRAW_URL = window.SERVER_URL_PREFIX;
