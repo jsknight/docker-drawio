@@ -11,18 +11,18 @@ COUNTRY_CODE=${COUNTRY:-'FR'}
 KEYSTORE_PASS=${KEYSTORE_PASS:-'V3ry1nS3cur3P4ssw0rd'}
 KEY_PASS=${KEY_PASS:-$KEYSTORE_PASS}
 
-echo "Init PreConfig.js"
-#Add CSP to prevent calls to draw.io
-echo "(function() {" > $CATALINA_HOME/webapps/draw/js/PreConfig.js
-echo "  try {" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
-echo "	    var s = document.createElement('meta');" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
-echo "	    s.setAttribute('content', '${DRAWIO_CSP_HEADER:-default-src \'self\' http://localhost:8080/ https://*.immediation.com/; script-src \'self\' http://localhost:8080/ https://*.immediation.com https://storage.googleapis.com https://apis.google.com https://docs.google.com https://code.jquery.com \'unsafe-inline\'; connect-src \'self\' wss://realtime.ably.io https://rest.ably.io https://internet-up.ably-realtime.com https://xc18-e48d-15e9.n7.xano.io https://*.dropboxapi.com https://api.trello.com https://api.github.com https://raw.githubusercontent.com https://*.googleapis.com https://*.googleusercontent.com https://graph.microsoft.com https://*.1drv.com https://*.sharepoint.com https://gitlab.com https://*.google.com https://fonts.gstatic.com https://fonts.googleapis.com; img-src * data:; media-src * data:; font-src * about:; style-src \'self\' \'unsafe-inline\' https://fonts.googleapis.com;}');" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
-echo "	    s.setAttribute('http-equiv', 'Content-Security-Policy');" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
-echo " 	    var t = document.getElementsByTagName('meta')[0];" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
-echo "      t.parentNode.insertBefore(s, t);" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
-echo "  } catch (e) {} // ignore" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
-echo "})();" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
-#Overrides of global vars need to be pre-loaded
+# echo "Init PreConfig.js"
+# #Add CSP to prevent calls to draw.io
+# echo "(function() {" > $CATALINA_HOME/webapps/draw/js/PreConfig.js
+# echo "  try {" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
+# echo "	    var s = document.createElement('meta');" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
+# echo "	    s.setAttribute('content', '${DRAWIO_CSP_HEADER:-default-src \'self\' http://localhost:8080 http://localhost:8001 http://localhost:9005 https://test4.immediation.com https://platform.immediation.com; script-src \'self\' http://localhost:8080 http://localhost:8001 http://localhost:9005 https://test4.immediation.com https://platform.immediation.com https://storage.googleapis.com https://apis.google.com https://docs.google.com https://code.jquery.com \'unsafe-inline\'; connect-src \'self\' wss://realtime.ably.io http://localhost:8080 http://localhost:8001 http://localhost:9005 https://test4.immediation.com https://platform.immediation.com https://rest.ably.io https://internet-up.ably-realtime.com https://xc18-e48d-15e9.n7.xano.io https://*.dropboxapi.com https://api.trello.com https://api.github.com https://raw.githubusercontent.com https://*.googleapis.com https://*.googleusercontent.com https://graph.microsoft.com https://*.1drv.com https://*.sharepoint.com https://gitlab.com https://*.google.com https://fonts.gstatic.com https://fonts.googleapis.com; img-src * data:; media-src * data:; font-src * about:; style-src \'self\' \'unsafe-inline\' http://localhost:8080 http://localhost:8001 http://localhost:9005 https://test4.immediation.com https://platform.immediation.com https://fonts.googleapis.com;}');" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
+# echo "	    s.setAttribute('http-equiv', 'Content-Security-Policy');" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
+# echo " 	    var t = document.getElementsByTagName('meta')[0];" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
+# echo "      t.parentNode.insertBefore(s, t);" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
+# echo "  } catch (e) {} // ignore" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
+# echo "})();" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
+# #Overrides of global vars need to be pre-loaded
 if [[ "${DRAWIO_SELF_CONTAINED}" ]]; then
     echo "window.EXPORT_URL = '/service/0'; //This points to ExportProxyServlet which uses the local export server at port 8000. This proxy configuration allows https requests to the export server via Tomcat." >> $CATALINA_HOME/webapps/draw/js/PreConfig.js
     echo "window.PLANT_URL = '/service/1';" >> $CATALINA_HOME/webapps/draw/js/PreConfig.js

@@ -10,3 +10,10 @@ services:
     ports:
       - 8080:8080
       - 8443:8443
+  drawio-nginx:
+    image: registry.gitlab.com/immediation/docker/drawio-nginx:latest
+    container_name: drawio-nginx
+    restart: unless-stopped
+    ports:
+      - 8001:80
+  
